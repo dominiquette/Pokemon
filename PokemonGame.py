@@ -33,45 +33,110 @@ print('''+--------------------------------------------------------------+
 ''')
 
 
-def random_pokemon():  # Function to get a random Pokemon by its ID number between 1-151. Shown on line 90.
-    random_no = random.randint(1, 151)  # Generates a random number between 1-151
+def random_pokemon():
+    """ 
+    Returns a dictionary containing information about a randomly chosen Pokemon.
+    A Pokemon is chosen randomly by generating a random ID number between 1-151.
+    The dictionary includes the Pokemon's name, ID, height, weight, attack, and speed.
+
+    Returns:
+    dict: A dictionary containing the following Pokemon details:
+        - 'name': The name of the randomly chosen Pokemon.
+        - 'id': The ID number of the randomly chosen Pokemon.
+        - 'height': The height of the randomly chosen Pokemon.
+        - 'weight': The weight of the randomly chosen Pokemon.
+        - 'attack': The base attack stat of the randomly chosen Pokemon.
+        - 'speed': The base speed stat of the randomly chosen Pokemon.
+    
+    Note:
+    The function utilizes the PokeAPI (https://pokeapi.co/) to fetch information about the Pokemon.
+    """  
+    # Generates a random number between 1-151 for selecting a Pokemon
+    random_no = random.randint(1, 151)  
     url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(random_no)  # Number is inserted to the API url to get Pokemon.
-    response = requests.get(url)  # Pulls out information from the url.
+    response = requests.get(url)  # Pulls out information from the url using the request library
     pokemon = response.json()  # Retrieves specific information for that Pokemon.
-    return {   # Dictionary that contains the returned Pokemon name, id, height, weight and stats.
+    
+    # Dictionary that contains the returned Pokemon name, id, height, weight and stats.
+    return {   
         'name': pokemon['name'],
         'id': pokemon['id'],
         'height': pokemon['height'],
         'weight': pokemon['weight'],
-        'attack': pokemon['stats'][1]['base_stat'],
-        'speed': pokemon['stats'][5]['base_stat'],
+        'attack': pokemon['stats'][1]['base_stat'], # Attack stat is at index 1 in the 'stats' list
+        'speed': pokemon['stats'][5]['base_stat'], # Speed stat is at index 5 in the 'stats' list
     }
 
 
-def choose_pokemon():  # Function for user to enter a Pokemon name or ID number. Shown on line 133.
-    name = input('Please enter the Pokemon name or ID number: ')  # Where the user enters the name or ID
-    url2 = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(name)  # Name is inserted to the API url to get a Pokemon.
-    response = requests.get(url2)
-    pokemon = response.json()
+def choose_pokemon(): 
+    """
+    Prompts the user to enter a Pokemon name or ID number, retrieves information
+    about the specified Pokemon from the PokeAPI, and returns a dictionary with
+    relevant details.
+
+    Returns:
+    dict: A dictionary containing the following Pokemon details:
+        - 'name': The name of the Pokemon.
+        - 'id': The ID number of the Pokemon.
+        - 'height': The height of the Pokemon.
+        - 'weight': The weight of the Pokemon.
+        - 'attack': The base attack stat of the Pokemon.
+        - 'speed': The base speed stat of the Pokemon.
+
+    Note:
+    The function uses the PokeAPI (https://pokeapi.co/) to fetch Pokemon information.
+    """
+    name = input('Please enter the Pokemon name or ID number: ') # Promt the user to enter a Pokemon name or ID number
+    url2 = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(name)  # Construct the API URL using the entered name or ID
+    response = requests.get(url2) # Make a GET request to the PokeAPI to retrieve information about the Pokemon
+    pokemon = response.json() # Parse the JSON response into a Python dictionary
+    
+    # Return a dictionary containing relevant details about the specified Pokemon
     return {
         'name': pokemon['name'],
         'id': pokemon['id'],
         'height': pokemon['height'],
         'weight': pokemon['weight'],
-        'attack': pokemon['stats'][1]['base_stat'],
-        'speed': pokemon['stats'][5]['base_stat'],
+        'attack': pokemon['stats'][1]['base_stat'], # Attack stat is at index 1 in the 'stats' list
+        'speed': pokemon['stats'][5]['base_stat'], # Speed stat is at index 5 in the 'stats' list
     }
 
 
-def delay(s):  # This is to make the text move slow. Shown on line 95.
+def delay(s):
+    """
+    Displays text with a delay, making it appear as if the text is moving slowly.
+
+    Args:
+    s (str): The text to be displayed with a delay.
+
+    Note:
+    This function uses sys.stdout.write to print each character of the input string
+    with a delay introduced by time.sleep(0.05) to simulate a slow-moving effect.
+    """
+    # Iterate through each character in the input string
     for c in s:
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(0.05)  # Delays the text to move 0.05 seconds.
+        sys.stdout.write(c) # Write the character to the standard output
+        sys.stdout.flush()  # Flush the standard output to ensure immediate display
+        time.sleep(0.05)  # Introduce a delay of 0.05 seconds between characters
 
 
 def run():
-    # The points stored for when user wins or loose and is shown on line 261
+    """
+    Runs a Pokemon comparison game allowing the user to choose between entering a Pokemon name or ID
+    or getting a random Pokemon. The game involves comparing selected stats of the user's Pokemon
+    with a randomly generated enemy Pokemon. The user earns points based on the comparison, and the
+    game can be played again. The points are stored in a file named 'pokemon.txt'.
+
+    Note:
+    The function utilizes various input prompts, delays, and visual effects to enhance the user experience.
+
+    Returns:
+    None
+
+    Raises:
+    KeyboardInterrupt: If the user interrupts the program (e.g., by pressing Ctrl+C), the game will exit.
+    """
+    # Points stored for when the user wins or loses
     winner = 0
     loser = 0
 
