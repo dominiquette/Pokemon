@@ -145,7 +145,7 @@ def run():
         enter_random = input('[ENTER]  or  [RANDOM]: ').lower()  # .lower() = to make text lower case when user enters.
 
         user_pokemon = random_pokemon()  # Variable to create a random Pokemon for user.
-        enemy_pokemon = random_pokemon()  # Variable to create a random Pokemon for Enemy(computer).
+        computer_pokemon = random_pokemon()  # Variable to create a random Pokemon for Enemy(computer).
 
         if enter_random == 'random':  # if user inputs to get a 'random' Pokemon, a random Pokemon will be selected.
             delay('\n\33[30m\33[43m         LOADING......             \33[0m')  # Loading sign moving across slowly.
@@ -156,7 +156,7 @@ def run():
             print('     Height: {} \n     Weight: {}'.format(user_pokemon['height'], user_pokemon['weight']))
             print('     Attack: {} \n     Speed: {} \n'.format(user_pokemon['attack'], user_pokemon['speed']))
 
-            print('Your enemy Pokemon is: {}'.format(enemy_pokemon['name'].title()))  # Enemy Pokemon is shown here
+            print('Your enemy Pokemon is: {}'.format(computer_pokemon['name'].title()))  # Enemy Pokemon is shown here
             time.sleep(1)
 
             print("\n[ID]   [HEIGHT]   [WEIGHT]   [ATTACK]   [SPEED]")  # Stats for the user to choose to play against.
@@ -164,20 +164,20 @@ def run():
             time.sleep(0.5)
 
             user_stat = user_pokemon[stat_choice]  # Variable is the stat the user picked.
-            enemy_stat = enemy_pokemon[stat_choice]  # Variable is to create the stat user picked for the enemy.
+            computer_stat = computer_pokemon[stat_choice]  # Variable is to create the stat user picked for the enemy.
 
             print('\nYour pokemon {} is: {}'.format(stat_choice, user_stat))  # User Pokemon stat and stat number.
             time.sleep(1)
 
-            print('Your enemy pokemon {} is: {}'.format(stat_choice, enemy_stat), '\n')  # Enemy Pokemon stat & number.
+            print('Your enemy pokemon {} is: {}'.format(stat_choice, computer_stat), '\n')  # Enemy Pokemon stat & number.
             time.sleep(1)
 
-            if user_stat > enemy_stat:  # If user stat number is higher than enemy, adds 1 point to the winner.
+            if user_stat > computer_stat:  # If user stat number is higher than enemy, adds 1 point to the winner.
                 winner += 1
                 print('Your {} is higher.'.format(stat_choice))
                 print('You Won! Well done.')
 
-            elif user_stat < enemy_stat:  # If user stat number is lower than enemy, adds 1 point to the enemy.
+            elif user_stat < computer_stat:  # If user stat number is lower than enemy, adds 1 point to the enemy.
                 loser += 1
                 print('Your {} is lower.'.format(stat_choice))
                 print('You lost! Better luck next time!')
@@ -197,7 +197,7 @@ def run():
             print('      Height: {} \n      Weight: {} '.format(user_pokemon['height'], user_pokemon['weight']))
             print('      Attack: {} \n      Speed: {} \n'.format(user_choose['attack'], user_choose['speed']))
 
-            print('Your enemy Pokemon is: {}'.format(enemy_pokemon['name'].title()), '\n')
+            print('Your enemy Pokemon is: {}'.format(computer_pokemon['name'].title()), '\n')
             time.sleep(1)
 
             print("[ID]   [HEIGHT]   [WEIGHT]   [ATTACK]   [SPEED]")
@@ -205,19 +205,19 @@ def run():
             time.sleep(0.5)
 
             user_stat = user_choose[stat_choice]
-            enemy_stat = enemy_pokemon[stat_choice]
+            computer_stat = computer_pokemon[stat_choice]
 
             print('\nYour pokemon {} is: {}'.format(stat_choice, user_stat))
             time.sleep(1)
-            print('Your enemy pokemon {} is: {}'.format(stat_choice, enemy_stat), '\n')
+            print('Your enemy pokemon {} is: {}'.format(stat_choice, computer_stat), '\n')
             time.sleep(1)
 
-            if user_stat > enemy_stat:
+            if user_stat > computer_stat:
                 winner += 1
                 print('Your {} is higher.'.format(stat_choice))
                 print('You Won! Well done.')
 
-            elif user_stat < enemy_stat:
+            elif user_stat < computer_stat:
                 loser += 1
                 print('Your {} is lower.'.format(stat_choice))
                 print('You lost! Better luck next time!')
@@ -244,7 +244,7 @@ def run():
                 print('     Height: {} \n     Weight: {}'.format(user_pokemon['height'], user_pokemon['weight']))
                 print('     Attack: {} \n     Speed: {} \n'.format(user_pokemon['attack'], user_pokemon['speed']))
 
-                print('Your enemy Pokemon is: {}'.format(enemy_pokemon['name'].title()))  # .title() = Capital letter
+                print('Your enemy Pokemon is: {}'.format(computer_pokemon['name'].title()))  # .title() = Capital letter
                 time.sleep(1)
 
                 print("\n[ID]   [HEIGHT]   [WEIGHT]   [ATTACK]   [SPEED]")
@@ -252,14 +252,14 @@ def run():
                 time.sleep(0.5)
 
                 user_stat = user_pokemon[stat_choice]
-                enemy_stat = enemy_pokemon[stat_choice]
+                computer_stat = computer_pokemon[stat_choice]
 
                 print('\nYour pokemon {} is: {}'.format(stat_choice, user_stat))
                 time.sleep(1)
-                print('Your enemy pokemon {} is: {}'.format(stat_choice, enemy_stat), '\n')
+                print('Your enemy pokemon {} is: {}'.format(stat_choice, computer_stat), '\n')
                 time.sleep(1)
 
-                if user_stat > enemy_stat:
+                if user_stat > computer_stat:
                     winner += 1
                     print('Your {} is higher.'.format(stat_choice))
                     print('Your the winner!')
@@ -284,7 +284,7 @@ def run():
                 print('      Height: {} \n      Weight: {} '.format(user_pokemon['height'], user_pokemon['weight']))
                 print('      Attack: {} \n      Speed: {} \n'.format(user_choose['attack'], user_choose['speed']))
 
-                print('Your enemy Pokemon is: {}'.format(enemy_pokemon['name'].title()), '\n')
+                print('Your enemy Pokemon is: {}'.format(computer_pokemon['name'].title()), '\n')
                 time.sleep(1)
 
                 print("[ID]   [HEIGHT]   [WEIGHT]   [ATTACK]   [SPEED]")
@@ -292,14 +292,14 @@ def run():
                 time.sleep(0.5)
 
                 user_stat = user_choose[stat_choice]
-                enemy_stat = enemy_pokemon[stat_choice]
+                computer_stat = computer_pokemon[stat_choice]
 
                 print('\nYour pokemon {} is: {}'.format(stat_choice, user_stat))
                 time.sleep(1)
-                print('Your enemy pokemon {} is: {}'.format(stat_choice, enemy_stat), '\n')
+                print('Your enemy pokemon {} is: {}'.format(stat_choice, computer_stat), '\n')
                 time.sleep(1)
 
-                if user_stat > enemy_stat:
+                if user_stat > computer_stat:
                     winner += 1
                     print('Your {} is higher.'.format(stat_choice))
                     print('Your the Winner!')
